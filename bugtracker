@@ -1,0 +1,38 @@
+class Bug:
+    def __init__(self, summary, description, priority):
+        self.summary = summary
+        self.description = description
+        self.priority = priority
+
+class BugTracker:
+    def __init__(self):
+        self.bugs = []
+
+    def add_bug(self, summary, description, priority):
+        new_bug = Bug(summary, description, priority)
+        self.bugs.append(new_bug)
+
+    def list_bugs(self):
+        for bug in self.bugs:
+            print(f"{bug.summary} ({bug.priority})")
+
+    def find_bug(self, summary):
+        for bug in self.bugs:
+            if bug.summary == summary:
+                return bug
+        return None
+
+tracker = BugTracker()
+tracker.add_bug("Application crash on launch", "The application crashes immediately when launched", "Critical")
+tracker.add_bug("Incorrect calculation", "The calculation for tax is incorrect", "High")
+tracker.add_bug("Spelling mistake in documentation", "There is a spelling mistake in the documentation", "Low")
+
+print("All bugs:")
+tracker.list_bugs()
+
+print("\nBug with summary 'Application crash on launch':")
+bug = tracker.find_bug("Application crash on launch")
+if bug:
+    print(bug.description)
+else:
+    print("Bug not found")
